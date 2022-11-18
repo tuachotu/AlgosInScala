@@ -13,7 +13,7 @@ object BinarySearch extends App {
     }
     binarySearchInternal(0, list.length - 1 )
     }
-
+    
     println(binarySearch(List(1,2,3,4,5,6,7,8), 3))
   }
 
