@@ -8,27 +8,25 @@ object Palindrom extends App {
     var right = s.length - 1
     var result = false
     breakable {
-      while (left <= right) {
-        println(left, right)
-        if (left == right) {
-          result = true
-          break
-        }
+      while (left < right) {
         if (s(left) == s(right)) {
-          println(s(left), s(right), left, right)
           left = left + 1
           right = right - 1
+          if (left >= right) {
+            result = true
+          }
         } else {
           result = false
           break
         }
       }
     }
-
     result
   }
 
   println(isPalinrom("1112111"))
+  println(isPalinrom("1112w111"))
+  println(isPalinrom("abba"))
 }
 
 
