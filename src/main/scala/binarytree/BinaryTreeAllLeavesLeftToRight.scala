@@ -1,7 +1,6 @@
 package binarytree
 
 object BinaryTreeAllLeavesLeftToRight extends App {
-
   abstract class BinaryTree {
     def value: Int
     def left: BinaryTree
