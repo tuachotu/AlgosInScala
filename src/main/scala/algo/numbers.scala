@@ -1,3 +1,5 @@
+package algo
+
 import scala.collection.mutable
 object numbers extends  App {
   def reverseInteger(num: Int): Int = {
