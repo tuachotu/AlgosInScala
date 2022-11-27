@@ -31,12 +31,14 @@ object LongestPalindromic extends App {
     println(r)
     val length = if (r._2 % 2 == 0) r._2-r._1-1 else r._2-r._1
     val start =  if (r._2 % 2 == 0) r._1-1 else r._1
-    s.drop(r._1-1).take(length )
+    //s.drop(r._1-1).take(length )
+    s.drop(r._1).take(r._2-r._1 -1 )
 
 
   }
 
  println(longestPalindromicString("babad"))
   println(longestPalindromicString("cbbd"))
+  println(longestPalindromicString("cbbbbd"))
 
 }

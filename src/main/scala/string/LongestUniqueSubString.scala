@@ -4,6 +4,7 @@ package string
 import scala.collection.mutable.HashMap
 object LongestUniqueSubString extends App {
 
+
   def lengthOfLongestSubstring(s: String): Int = {
     if (s.isEmpty) 0
     else {
