@@ -15,7 +15,6 @@ object PhoneNumberToString extends App {
         stringToChooseFrom foreach { c =>
           val resMod = result+c
           buildResult(index+1, resMod)
-
         }
       }
     }

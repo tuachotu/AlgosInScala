@@ -16,8 +16,21 @@ object StringMatchingNaiveAlgo extends App {
       }
     } else Nil
   }
-  patternMatch("AAABBCC", "2ABB")
-  println( patternFoundAt("AAABBCC", "2ABB").mkString(","))
 
-  println( patternFoundAt("AAABBCC", "AA").mkString(","))
+  def patternFirstFoundAt(m: String, n: String): Int = {
+    if (m.nonEmpty && n.nonEmpty && m.length >= n.length) {
+       (0 until m.length).collectFirst { case index if m.drop(index).startsWith(n) => index } match {
+         case Some(index) => index
+         case _ => -1
+       }
+    } else -1
+  }
+//  patternMatch("AAABBCC", "2ABB")
+//  println( patternFoundAt("AAABBCC", "2ABB").mkString(","))
+//
+//  println( patternFoundAt("AAABBCC", "AA").mkString(","))
+
+  println( patternFirstFoundAt("AAABBCC", "AA"))
+  println( patternFirstFoundAt("1AAABBCC", "AA"))
+  println( patternFirstFoundAt("A", "A"))
 }
