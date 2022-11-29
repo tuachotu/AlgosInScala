@@ -1,5 +1,7 @@
 package matrix
 
+import scala.util.control.Breaks.{break, breakable}
+
 object ValidSudoku extends App {
   val AllowedChars = List("1","2","3","4","5","6","7","8","9")
   def validSudokuGrid(matrix: List[List[String]]) : Boolean = {
@@ -23,8 +25,18 @@ object ValidSudoku extends App {
       numbersInSubBox.distinct.length == numbersInSubBox.length && numbersInRow.distinct.length == numbersInRow.length && numbersInCol.distinct.length == numbersInCol.length
     }
 
-    validatePoint(8,0)
+    var result: Boolean = true
+    breakable {
+      (0 until 9).toList foreach { row =>
+        (0 until 9).toList foreach { col =>
+          result = validatePoint(row, col)
+          if (result == false) break
+        }
+        if (result == false) break
+      }
+    }
 
+      result
   }
 
   val input = List(List("5", "3", ".", ".", "7", ".", ".", ".", ".")
@@ -45,11 +57,11 @@ object ValidSudoku extends App {
     , List("4", ".", ".", "8", ".", "3", ".", ".", "1")
     , List("7", ".", ".", ".", "2", ".", ".", ".", "6")
     , List(".", "6", ".", ".", ".", ".", "2", "8", ".")
-    , List(".", ".", ".", "4", "1", "9", ".", ".", "5")
-    , List("6", ".", ".", ".", "8", ".", ".", "7", "9"))
+    , List(".", ".", ".", "4", "1", "9", ".", ".", "1")
+    , List(".", ".", ".", ".", "8", ".", ".", "7", "9"))
 
 
-  //println(validSudokuGrid(input))
+  println(validSudokuGrid(input))
   println(validSudokuGrid(inputBad))
 
 }
