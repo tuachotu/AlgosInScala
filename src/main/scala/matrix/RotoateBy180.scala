@@ -1,5 +1,9 @@
 package matrix
 
+
+// rotatte by 180 means
+// - reverse the rows (i.e. 0 - n ---> n - 0
+// - and then reverse each row
 object RotoateBy180 extends App {
   def rotate(mat:List[List[Int]]): List[List[Int]] = {
     (mat.reverse).map(_.reverse)
