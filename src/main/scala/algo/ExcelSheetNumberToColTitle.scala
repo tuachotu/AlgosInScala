@@ -1,6 +1,11 @@
 package algo
 
-import scala.::
+
+
+// Solution
+// How to get chat for number = n + 'A' to char ; n will be always i limit
+// run a loop on number , doing number/26 each iteration
+// we need to make sure we do number-- just to take care of case 1 we get 1 as divide result
 
 object ExcelSheetNumberToColTitle extends App {
   def getCharForNumber(n:Int): Char =  (n + 'A').toChar
@@ -14,7 +19,6 @@ object ExcelSheetNumberToColTitle extends App {
     }
     result
   }
-
 
   def calculateColTitleFunctional(num: Int): String = {
     if (num == 0) ""
