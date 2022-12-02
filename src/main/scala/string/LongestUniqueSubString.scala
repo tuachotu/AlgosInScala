@@ -3,22 +3,27 @@ package string
 
 import scala.collection.mutable.{HashMap, ListBuffer}
 object LongestUniqueSubString extends App {
-
   def lengthOfLongestUniqueSubstring(s: String): Int = {
+
+    def findUniqueString(ss: String): String = {
+      val lngstSbStrng = ListBuffer[Char]()
+      ss.takeWhile { c =>
+        if (lngstSbStrng.contains(c)) {
+          false
+        } else {
+          lngstSbStrng += c
+          true
+        }
+      }
+      lngstSbStrng.mkString
+    }
+
     def lengthOfLongestUniqueSubstringInternal(startFrom: Int): Int = {
       val stringToWorkOn = s.drop(startFrom)
       stringToWorkOn match {
         case _ if stringToWorkOn.isEmpty => 0
         case _ =>
-          val lngstSbStrng = ListBuffer[Char]()
-          stringToWorkOn.takeWhile { c =>
-            if (lngstSbStrng.contains(c)) {
-              false
-            } else {
-              lngstSbStrng+=c
-              true
-            }
-          }
+          val lngstSbStrng = findUniqueString(stringToWorkOn)
           if (lngstSbStrng.length == s.length) s.length
           else Math.max(lngstSbStrng.length, lengthOfLongestUniqueSubstringInternal(startFrom + lngstSbStrng.length))
       }
@@ -26,6 +31,7 @@ object LongestUniqueSubString extends App {
 
     if (s.isEmpty || s.filter(!_.isWhitespace).isEmpty) 0 else lengthOfLongestUniqueSubstringInternal(0)
   }
+
 
   def lengthOfLongestSubstring(s: String): Int = {
     if (s.isEmpty || s.filter(!_.isWhitespace).isEmpty) 0
