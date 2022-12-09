@@ -3,7 +3,7 @@ package algo
 
 
 // Solution
-// How to get chat for number = n + 'A' to char ; n will be always i limit
+// How to get char for number = n + 'A' to char ; n will be always in limit
 // run a loop on number , doing number/26 each iteration
 // we need to make sure we do number-- just to take care of case 1 we get 1 as divide result
 

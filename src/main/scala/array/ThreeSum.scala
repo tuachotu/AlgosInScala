@@ -16,7 +16,7 @@ object ThreeSum extends  App{
   def threeSumPrintNumber(list:List[Int], target: Int): Unit = {
     list.zipWithIndex foreach { case (number, index) =>
       val targetTwoSum = target - number
-      val restList = list.take(index-1) ++ list.drop(index)
+      val restList = list.take(index) ++ list.drop(index+1)
       twoSumReturnNumbers(restList, targetTwoSum) match {
         case Nil =>
         case resultTwoSum => resultTwoSum foreach { pair =>
