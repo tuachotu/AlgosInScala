@@ -34,16 +34,28 @@ object SubarraySumEqualsK extends App{
     res.count(_ == target)
   }
 
+  def findArrayCountWithSumWithOutSpace(nums:List[Int], target: Int): Int = {
+    nums.indices.foldLeft(0/*count*/, 0, Map[Int, Int]((0 -> 1))/*SumCountMap*/) { case ((count, sum, sumCountMap), index) =>
+      val newSum = nums(index) + sum
+      val newCount =  sumCountMap.getOrElse(newSum - target, 0) + count
+      val newSumCountMap = sumCountMap + (newSum -> (sumCountMap.getOrElse(newSum, 0) + 1) )
+      (newCount, newSum, newSumCountMap)
+    }._1
+  }
+
+
   println(findArrayCountBruteForce(List(1,1,1), 2))
   println(findArrayCountWithSumWithSpace(List(1,1,1), 2))
+  println(findArrayCountWithSumWithOutSpace(List(1,1,1), 2))
   println
   println(findArrayCountBruteForce(List(1,2,3), 3))
   println(findArrayCountWithSumWithSpace(List(1, 2,3), 3))
-  println
-  println(findArrayCountBruteForce(List(1,2,3,15), 15))
-  println(findArrayCountWithSumWithSpace(List(1,2,3,15), 15))
-  println
-  println(findArrayCountBruteForce(List(1,-1, 2,3,15, -12,-3), 0))
-  println(findArrayCountWithSumWithSpace(List(1,-1, 2,3,15, -12,-3), 0))
+  println(findArrayCountWithSumWithOutSpace(List(1,2,3), 3))
+//  println
+//  println(findArrayCountBruteForce(List(1,2,3,15), 15))
+//  println(findArrayCountWithSumWithSpace(List(1,2,3,15), 15))
+//  println
+//  println(findArrayCountBruteForce(List(1,-1, 2,3,15, -12,-3), 0))
+//  println(findArrayCountWithSumWithSpace(List(1,-1, 2,3,15, -12,-3), 0))
 
 }
