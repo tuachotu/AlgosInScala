@@ -26,7 +26,7 @@ object SubarraySumEqualsK extends App{
   def findArrayCountWithSumWithSpace(nums:List[Int], target: Int): Int = {
     val lookup = nums.foldLeft(List[Int](0)) { (lookupInProgress, number) =>
        lookupInProgress ++ List(lookupInProgress.last + number)
-    }
+    } // n + 1 size
     val res =  for {
       i <- nums.indices
       j <- i+1 to nums.length // tricky part
