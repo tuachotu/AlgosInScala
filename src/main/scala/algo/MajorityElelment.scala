@@ -14,5 +14,6 @@ object MajorityElelment extends App {
   }
 
   println(findMaj(List(1, 8,8, 7, 4, 1, 2, 2,8,8,8, 2, 2, 2, 2)))
+  println(findMaj(List(2,2,1,1,1,2,2)))
 
 }
