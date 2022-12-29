@@ -3,6 +3,7 @@ package algo
 object SlidingPuzzle extends  App {
   val alreadyChecked = scala.collection.mutable.ListBuffer.empty[String]
   def slidingPuzzle(board: List[List[Int]]): Int = {
+
     def swapPosition(x: Int, y: Int): List[(Int, Int)] = {
       List((x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)).filter(p =>
         p._1 >= 0 && p._1 < 2 && p._2 >= 0 && p._2 < 3
@@ -41,24 +42,29 @@ object SlidingPuzzle extends  App {
 
     def boardToString(state: List[List[Int]]): String = state.map(_.mkString(",")).mkString(",")
 
-    if (!alreadyChecked.contains(boardToString(board))) {
-      alreadyChecked += boardToString(board)
-      if (boardSolved(board)) 1 else {
-        val emptyCell = findEmpty(board)
-        val nextPositions = swapPosition(emptyCell._1, emptyCell._2)
-        val nextPositionsSwapped = nextPositions.map { pos => nextState(pos, emptyCell) }.filter(p => !alreadyChecked.contains(boardToString(p)))
-        if (nextPositionsSwapped.isEmpty)-1
-        else if (nextPositionsSwapped.exists(boardSolved)) {
-          println("found")
-          1
-        }
-        else  {
-          1 + nextPositionsSwapped.map(slidingPuzzle).min
+    def slidingPuzzleInternal(board: List[List[Int]], stepCount: Int = 0): Int = {
+      if (!alreadyChecked.contains(boardToString(board))) {
+        alreadyChecked += boardToString(board)
+        if (boardSolved(board)) 0 else {
+          val emptyCell = findEmpty(board)
+          val nextPositions = swapPosition(emptyCell._1, emptyCell._2)
+          val nextPositionsSwapped = nextPositions.map { pos => nextState(pos, emptyCell) }.filter(p => !alreadyChecked.contains(boardToString(p)))
+          if (nextPositionsSwapped.isEmpty) -1
+          else if (nextPositionsSwapped.exists(boardSolved)) {
+            println("found")
+            1
+          }
+          else {
+            val v = nextPositionsSwapped.map( p => slidingPuzzleInternal(p, stepCount + 1)).filter(_ > 0)
+            if (v.nonEmpty) v.min else 0
 
+          }
         }
-      }
-    } else 0
+      } else -1
     }
+
+    slidingPuzzleInternal(board)
+  }
 
 
   //println(slidingPuzzle(List(List(1,2,3), List(4,0,5))))
