@@ -3,7 +3,8 @@ package string
 object AnagramInString extends App {
 
   // Given two strings s and p, return an array of all the start indices of p's anagrams in s.
-  // An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+  // An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase,
+  // typically using all the original letters exactly once.
 
 
   def findAnagrams(s:String, p: String): List[Int] = {
