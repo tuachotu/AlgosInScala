@@ -18,25 +18,22 @@ import scala.collection.mutable._
 //            return r1::r2
 
 object AllPathToNode extends App {
-
-  def findAllPath(graph: Map[Int, List[Int]]): List[List[Int]] = {
-    def findPathInternal(pathInProgress: List[Int], node:Int, target: Int): List[List[Int]] = {
+  def findAllPath2(graph: Map[Int, List[Int]]): List[List[Int]] = {
+    def findPathInternal2(pathInProgress: List[Int], node: Int, target: Int): List[List[Int]] = {
       if (graph(node).isEmpty) List[List[Int]]()
       else {
         // flat map convert  List(List(List(1)), List(List(2))) => List(List(1), List(2))
         graph(node).flatMap { neighbor =>
-          val result1 = if (neighbor == target) pathInProgress ++ List(target) else List[Int]()
-          val result2 = findPathInternal(pathInProgress ++ List(neighbor), neighbor, target)
-          result1::result2
+          if (neighbor == target) List(pathInProgress ++ List(target))
+          else findPathInternal2(pathInProgress ++ List(neighbor), neighbor, target)
         }
       }
     }
 
-      val start = graph.keys.toList.sorted.head
-      val end = graph.keys.toList.sorted.last
-      findPathInternal(List(start), start, end).filter(_.nonEmpty)
-    }
-
+    val start = graph.keys.toList.sorted.head
+    val end = graph.keys.toList.sorted.last
+    findPathInternal2(List(start), start, end).filter(_.nonEmpty)
+  }
 
 
   val input1 = Map (
@@ -54,11 +51,13 @@ object AllPathToNode extends App {
     (4->List())
   )
 
-  findAllPath(input1) foreach { path =>
+
+  findAllPath2(input1) foreach { path =>
     println(path.mkString("->"))
   }
 println("================")
-  findAllPath(input2) foreach { path =>
+  println("================")
+  findAllPath2(input2) foreach { path =>
     println(path.mkString("->"))
   }
 }

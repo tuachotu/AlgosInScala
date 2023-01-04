@@ -8,7 +8,7 @@ object KthLargestElement extends  App {
   def findKthElementHeap(l: List[Int], k: Int): Option[Int] = {
     if (l.isEmpty) None
     else {
-      var myMaxHeap = PriorityQueue[Int]()
+      val myMaxHeap = PriorityQueue[Int]()
       l foreach( myMaxHeap.enqueue(_))
       val result = (0 until k).foldLeft(0) { (result, index) => myMaxHeap.dequeue()}
       Some(result)
@@ -19,7 +19,7 @@ object KthLargestElement extends  App {
   def findKthSmallestElementHeap(l: List[Int], k: Int): Option[Int] = {
     if (l.isEmpty) None
     else {
-      var myMaxHeap = PriorityQueue[Int]()(Ordering[Int].reverse)
+      val myMaxHeap = PriorityQueue[Int]()(Ordering[Int].reverse)
       l foreach (myMaxHeap.enqueue(_))
       val result = (0 until k).foldLeft(0) { (_, _) => myMaxHeap.dequeue() }
       Some(result)
@@ -41,8 +41,11 @@ object KthLargestElement extends  App {
   }
 
   println(findKthElement(List(9,8,7,6,5,4,3,2,1), 9-3+ 1))
-  println(findKthElement(List(9,8,7,6,5,4,3,2,1), 3))
-  println(findKthElementHeap(List(9,8,7,6,5,4,3,2,1), 3))
-  println(findKthSmallestElementHeap(List(9,8,7,6,5,4,3,2,1), 3))
+  println(findKthElement(List(8,9,7,5,6,4,2,3,1), 9-3+ 1))
+  println(findKthElement(List(9, 8, 7, 6, 5, 4, 3, 2, 1), 3 ))
+  println(findKthElement(List(8, 9, 7, 5, 6, 4, 2, 3, 1), 3))
+//  println(findKthElement(List(9,8,7,6,5,4,3,2,1), 3))
+//  println(findKthElementHeap(List(9,8,7,6,5,4,3,2,1), 3))
+//  println(findKthSmallestElementHeap(List(9,8,7,6,5,4,3,2,1), 3))
 
 }
