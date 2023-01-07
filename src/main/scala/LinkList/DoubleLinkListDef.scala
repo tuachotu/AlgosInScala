@@ -12,7 +12,7 @@ object DoubleLinkListDef extends  App {
       if (isEmpty) Node(v)
       else if(!next.isEmpty) {
         Node(value, prev, next.add(v))
-      } else {
+        } else {
         val nodeToAdd = Node(v, prev = this, next = EmptyNode)
         Node(value, prev, nodeToAdd)
       }
