@@ -12,7 +12,6 @@ object MinimumTimeForTotalTrip extends App {
   def minimumTime(time: Array[Int], totalTrips: Int): Long = {
     var left: Long = 1L
     var right: Long = time.min * totalTrips.toLong
-    println(left, right)
     while (left < right) {
       val moment = (right + left) / 2
       totalTripsAtMoment(time, moment = moment) match {

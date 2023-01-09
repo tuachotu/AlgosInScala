@@ -33,10 +33,12 @@ object SingleNumber extends App {
     result.get
   }
 
+  // add all unique elements, and double them
+  // substract sum of actual array
   def findSingleMath(nums: List[Int]): Int =
     (nums.foldLeft(Set.empty[Int]) { _ + _ }.sum *2) - nums.sum
 
-
+  // Bitwise xor zeroed out same bits
   def findSingleConstantSpace(nums: List[Int]): Int = nums.tail.foldLeft(nums.head) {_ ^ _}
 
 
