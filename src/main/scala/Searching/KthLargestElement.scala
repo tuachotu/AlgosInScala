@@ -34,6 +34,11 @@ object KthLargestElement extends  App {
 
       val newList = l.filter(_ < pivot) ++ l.filter(_ == pivot) ++ l.filter(_ > pivot)
       val pivotPos = newList.find(_ == pivot).get
+//      pivotPos match {
+//        case k => Some(pivot)
+//        case _ if pivotPos > k => findKthElement(newList.filter(_ < pivot), k)
+//        case _ => findKthElement(newList.filter(_ > pivot), k)
+//      }
       if (pivotPos == k) Some(pivot)
       else if (pivotPos > k) findKthElement(newList.filter(_ < pivot), k)
       else findKthElement(newList.filter(_ > pivot), k)
