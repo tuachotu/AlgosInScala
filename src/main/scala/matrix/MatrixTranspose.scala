@@ -1,6 +1,8 @@
 package matrix
 
 object MatrixTranspose extends App {
+
+  //solution - transpose E[row[][col] is swapped with E[col][row]
   def transpose(matrix: List[List[Int]]): List[List[Int]] ={
     val rows = matrix.length
     val cols = matrix.head.length

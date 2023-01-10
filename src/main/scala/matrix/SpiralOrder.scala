@@ -32,10 +32,12 @@ object SpiralOrder extends App {
         else if (m.length == 1) m.head
         else {
           val innerMatrix = getInnerMatrix(m)
-          val outer1 = m.head
-          val outer3 = m.last.reverse
+          val outer1 = m.head // first row
+          val outer3 = m.last.reverse // last row reverse
+          // m.tail.init -> rows between last and first
+          // m.head.length -> first row length
           val outer2 = if (m.tail.init.nonEmpty && m.head.length > 1) { // tricky part
-              m.tail.init map  { row => row.tail.last }
+              m.tail.init map  { row => row.tail.last } // last element of each middle row
             }  else List.empty[Int]
           val outer4 = if (m.tail.init.nonEmpty) m.tail.init map  { row => row.head } else List.empty[Int]
           println(outer1,outer2, outer3, outer4)

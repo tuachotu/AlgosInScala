@@ -5,9 +5,13 @@ import scala.util.control.Breaks.{break, breakable}
 object ValidSudoku extends App {
   val AllowedChars = List("1","2","3","4","5","6","7","8","9")
   def validSudokuGrid(matrix: List[List[String]]) : Boolean = {
+
     def getCol(col: Int): List[String] = matrix.map(_ (col))
+
     def getRow(row: Int): List[String] = matrix(row)
+
     def getSubBoxStart(row: Int, col: Int): (Int, Int) = (3 * (row / 3), 3 * (col / 3))
+
     def getSubBox(row:Int, col:Int): List[List[String]]= {
       (0 until 3).toList map { r =>
         (0 until 3).toList map { c =>
