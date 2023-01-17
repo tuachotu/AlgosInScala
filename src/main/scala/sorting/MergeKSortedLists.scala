@@ -4,7 +4,7 @@ object MergeKSortedLists extends App {
   def mergeKLists(lists: List[List[Int]]): List[Int] ={
     val validLists = lists.filter(_.nonEmpty)
     if (validLists.isEmpty) Nil else {
-      val firstElementsSorted = validLists.map(_.head).sorted
+      val firstElementsSorted = validLists.map(_.head).sorted // O(nlogn)
       val restOfElement = (firstElementsSorted.tail :: validLists.map(_.tail)).filter(_.nonEmpty)
       val smallestElement = firstElementsSorted.head
       if (restOfElement.isEmpty) List(smallestElement) else smallestElement::mergeKLists(restOfElement)

@@ -44,6 +44,14 @@ object PalindromePairs extends App {
      }
   }
 
+  /*
+  solution -
+  For each word in list, calculate possible palindrom l1
+  get a map word to inex
+
+
+   */
+
   def palindromePairs(words: Array[String]): List[(Int,Int)] = {
     val palindromLookupMap = words.indices.foldLeft(Map.empty[String,Int]) { case (palindromLookupMap, wordIndex) =>
           findPalindromePairsForWord(words(wordIndex)).map(w => (w, wordIndex)).toMap ++ palindromLookupMap
