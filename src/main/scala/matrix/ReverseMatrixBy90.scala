@@ -26,30 +26,30 @@ object ReverseMatrixBy90 extends App {
     transpose.map(_.reverse)
   }
 
-//  val input = List(List(1,2,3,4,5), List(6,7,8,9,10), List(11,12,13,14,15), List(16,17,18,19,20), List(21,22,23,24,25))
-//
-//  printMatrix(input)
-//  println()
-//  println()
-//  printMatrix(rotateBy90(input,5,5))
-//  println()
-//  println()
-//
-//
-//  val input1 = List(List(1,2,3,4,5), List(6,7,8,9,10), List(11,12,13,14,15), List(16,17,18,19,20))
-//
-//  printMatrix(input1)
-//  println()
-//  println()
-//  printMatrix (rotateBy90(input1, 4, 5))
-//  println()
-//  println()
-//  val input2 = List(List( 2, 3, 4, 5), List( 7, 8, 9, 10), List( 12, 13, 14, 15), List( 17, 18, 19, 20), List( 22, 23, 24, 25))
-//
-//  printMatrix(input2)
-//  println()
-//  println()
-//  printMatrix(rotateBy90(input2, 5, 4))
+  val input = List(List(1,2,3,4,5), List(6,7,8,9,10), List(11,12,13,14,15), List(16,17,18,19,20), List(21,22,23,24,25))
+
+  printMatrix(input)
+  println()
+  println()
+  printMatrix(rotateBy90(input,5,5))
+  println()
+  println()
+
+
+  val input1 = List(List(1,2,3,4,5), List(6,7,8,9,10), List(11,12,13,14,15), List(16,17,18,19,20))
+
+  printMatrix(input1)
+  println()
+  println()
+  printMatrix (rotateBy90(input1, 4, 5))
+  println()
+  println()
+  val input2 = List(List( 2, 3, 4, 5), List( 7, 8, 9, 10), List( 12, 13, 14, 15), List( 17, 18, 19, 20), List( 22, 23, 24, 25))
+
+  printMatrix(input2)
+  println()
+  println()
+  printMatrix(rotateBy90(input2, 5, 4))
 
 
   val input21 = List(List(2, 3, 4, 5), List(7, 8, 9, 10))

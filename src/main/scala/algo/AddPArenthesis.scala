@@ -25,7 +25,6 @@ object AddParenthesis extends App {
     }
     if (isNumber) {
       res = res :+ s.toInt
-      println(res.mkString)
     }
     res.toList
   }
