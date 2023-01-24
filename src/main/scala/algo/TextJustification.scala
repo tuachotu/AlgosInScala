@@ -49,25 +49,26 @@ object TextJustification extends App {
           word + " "
         } else word
       }
-    } else {
-      val padding = List.fill(spaceCount)(" ").mkString("")
-      words.map(_ + padding)
-    }
+    } else words // one word needs no padding
   }
 
   def fullJustify(words: Array[String], maxWidth: Int): List[String] = {
     def  fullJustifyInternal(wordsList: List[String]): List[String] = {
       var charCount = 0
+      // get words which can fit in one line
       val wordsInCurrentLine = wordsList.takeWhile { w =>
         if (charCount > maxWidth || charCount + w.length > maxWidth) false
         else {
+            // add a space for each word
             charCount = charCount + 1 + w.length
             true
           }
       }
 
       val totalWordLegnth = wordsInCurrentLine.foldLeft(0){ (totalLength,w) =>  totalLength + w.length}
+
       val totalSpaceToDistribute = maxWidth - totalWordLegnth
+
       val finalCurrentLine = fillSpace(wordsInCurrentLine, totalSpaceToDistribute).mkString("")
       val pendingWords = wordsList.drop(wordsInCurrentLine.length)
       if (pendingWords.isEmpty) List(finalCurrentLine) else finalCurrentLine::fullJustifyInternal(pendingWords)

@@ -42,28 +42,27 @@ object SlidingPuzzle extends  App {
 
     def boardToString(state: List[List[Int]]): String = state.map(_.mkString(",")).mkString(",")
 
-    def slidingPuzzleInternal(board: List[List[Int]], stepCount: Int = 0): Int = {
+    def slidingPuzzleInternal(board: List[List[Int]], stepCount: Int = 0): Option[Int] = {
       if (!alreadyChecked.contains(boardToString(board))) {
         alreadyChecked += boardToString(board)
-        if (boardSolved(board)) 0 else {
+        if (boardSolved(board)) Some(0)
+        else {
           val emptyCell = findEmpty(board)
           val nextPositions = swapPosition(emptyCell._1, emptyCell._2)
           val nextPositionsSwapped = nextPositions.map { pos => nextState(pos, emptyCell) }.filter(p => !alreadyChecked.contains(boardToString(p)))
-          if (nextPositionsSwapped.isEmpty) -1
-          else if (nextPositionsSwapped.exists(boardSolved)) {
-            println("found")
-            1
-          }
-          else {
-            val v = nextPositionsSwapped.map( p => slidingPuzzleInternal(p, stepCount + 1)).filter(_ > 0)
-            if (v.nonEmpty) v.min else 0
 
+          if (nextPositionsSwapped.isEmpty) None
+          else if (nextPositionsSwapped.exists(boardSolved)) {
+            Some(stepCount + 1)
+          } else {
+            val v = nextPositionsSwapped.map( p => slidingPuzzleInternal(p, stepCount + 1)).filter(_.isDefined).map(_.get)
+            if (v.nonEmpty) Some(v.min) else None
           }
         }
-      } else -1
+      } else None
     }
 
-    slidingPuzzleInternal(board)
+    slidingPuzzleInternal(board).getOrElse(-1)
   }
 
 
